@@ -4,3 +4,35 @@
 *.ptx
 *.cubin
 *.fatbin
+.aider*
+
+# CMake related
+CMakeLists.txt*
+CMakeCache.txt*
+.cmake
+CMakeFiles/*
+cmake_install.cmake*
+cmake-check_build_state.*
+
+*.dir
+*.elf
+*.exe
+*.so
+*.o
+*.obj
+*.a
+*.lib
+*.d
+*.depends
+
+# Generated Makefiles
+Makefile
+cmake_uninstall.cmake* # (Optional if you use `make install`)
+
+# Build directories
+build/
+
+# CUDA related
+*.device         # Device-specific cache files for CUDA
+*.kernel        # Kernel cache files for CUDA
+nvcc_cache/     # CUDA compiler cache directory
