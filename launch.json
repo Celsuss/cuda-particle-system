@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug c++ project, gdb",
+            "type": "gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/cuda-particle-system",
+            "args": ["-q"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false
+        }
+    ]
+}

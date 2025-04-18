@@ -29,10 +29,14 @@ cmake-check_build_state.*
 Makefile
 cmake_uninstall.cmake* # (Optional if you use `make install`)
 
-# Build directories
+# Build related
+cuda-particle-system
 build/
 
 # CUDA related
 *.device         # Device-specific cache files for CUDA
 *.kernel        # Kernel cache files for CUDA
 nvcc_cache/     # CUDA compiler cache directory
+
+# Emacs related
+.dir-locals.el

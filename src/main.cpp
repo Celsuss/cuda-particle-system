@@ -1,7 +1,9 @@
 #include <iostream>
 
 int main() {
-  std::cout << "Hello, World!" << std::endl;
+  const int kalle = 1;
+
+  std::cout << "Hello, Worlds!" << std::endl;
 
   return 0;
 }
