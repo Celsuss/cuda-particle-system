@@ -1,8 +1,21 @@
 # cuda-particle-system
 
+## TODO
+### Read about generate compile file for clangd using cmake
+https://clangd.llvm.org/installation
+
 ## Build system
 ``` bash
-    cmake .
+    cd build/
+    cmake ..
+    make
+    ./cuda-particle-system
+```
+### With clang support
+``` bash
+    cd build/
+    cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+    ln -s compile_commands.json ../src/
     make
     ./cuda-particle-system
 ```
