@@ -10,8 +10,10 @@
 
 #include "simulator.h"
 #include "particle.h"
+#include "renderer.h"
 
 Simulator::Simulator(int n_particles) {
+  m_renderer = new Renderer();
   for(int i = 0; i < n_particles; ++i){
     m_particles.push_back(new Particle());
   }
@@ -21,11 +23,12 @@ Simulator::~Simulator(){}
 
 
 void Simulator::run() {
-  for (int i = 0; i < 100; ++i){
-    update();
-  }
+  update();
 }
 
 void Simulator::update() {
-
+  while(m_renderer->isWindowOpen()){
+    m_renderer->render();
+  }
+  m_renderer->closeWindow();
 }

@@ -1,7 +1,9 @@
+#pragma once
+
 #include <vector>
 #include "particle.h"
 
-#pragma once
+class Renderer;
 
 class Simulator {
 public:
@@ -13,4 +15,5 @@ private:
   void update();
 
   std::vector<Particle*> m_particles;
+  Renderer* m_renderer;
 };
