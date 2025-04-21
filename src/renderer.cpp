@@ -9,8 +9,25 @@
 #include <cstdlib>
 
 Renderer::Renderer() {
-  initialize();
+  // Initialize GLFW
+  if (!glfwInit()) {
+    std::cerr << "Failed to initialize GLFW" << std::endl;
+  }
+
+  // Configure GLFW for OpenGL 3.3 core profile
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
   m_window = createWindow(1024, 768);
+
+  glewExperimental = GL_TRUE;
+  GLenum err = glewInit();
+  if (GLEW_OK != err) {
+    /* Problem: glewInit failed, something is seriously wrong. */
+    // fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+    std::cerr << "Error: %s\n", glewGetErrorString(err);
+  }
   m_shaderProgram = createShaderProgram();
 }
 
@@ -24,7 +41,7 @@ void Renderer::closeWindow() {
   glfwTerminate();
 }
 
-bool Renderer::isWindowOpen() const { return glfwWindowShouldClose(m_window); }
+bool Renderer::isWindowOpen() const { return !glfwWindowShouldClose(m_window); }
 
 void Renderer::render() {
   glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -84,27 +101,6 @@ void Renderer::renderParticles(const Particle *particles, const int m_particles)
     // glDrawArrays(GL_POINTS, 0, NUM_PARTICLES);
     glDrawArrays(GL_POINTS, 0, m_particles);
 };
-
-int Renderer::initialize() {
-  // Initialize GLFW
-  if (!glfwInit()) {
-    std::cerr << "Failed to initialize GLFW" << std::endl;
-    return -1;
-  }
-
-  // Configure GLFW for OpenGL 3.3 core profile
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-  // Initialize GLEW
-  glewExperimental = GL_TRUE;
-  if (glewInit() != GLEW_OK) {
-    std::cerr << "Failed to initialize GLEW" << std::endl;
-    return -1;
-  }
-  return 0;
-}
 
 GLFWwindow *Renderer::createWindow(const int width, const int height) {
   GLFWwindow *window = glfwCreateWindow(width, height, "Particle Renderer", nullptr, nullptr);

@@ -14,7 +14,6 @@ public:
   void renderParticles(const Particle *particles, const int n_particles);
 
 private:
-  int initialize();
   GLFWwindow *createWindow(const int width, const int height);
   GLuint createShaderProgram();
 

@@ -8,14 +8,15 @@
  * This module
  */
 
-#include <iostream>
 #include "simulator.h"
+#include <iostream>
 
 int main() {
   const int kalle = 1;
 
   std::cout << "Hello, Worlds!" << std::endl;
-  Simulator* simulator = new Simulator();
+  Simulator *simulator = new Simulator();
   simulator->run();
+  std::cout << "Bye, Worlds!" << std::endl;
   return 0;
 }
