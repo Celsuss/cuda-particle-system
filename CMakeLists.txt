@@ -34,21 +34,37 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_86 --use_fast_math -O3")
 set(CMAKE_CXX_FLAGS "-g --std=c++17")
 
 # Add executable
-add_executable(particle_simulator
-  src/main.cpp
-  src/particle.cpp
-  src/simulator.cpp
-  src/renderer.cpp
-  kernels/particle_kernels.cu
+## Explicitly add files, use for prod
+# add_executable(cuda-particle-system
+#   src/main.cpp
+#   src/particle.cpp
+#   src/simulator.cpp
+#   src/renderer.cpp
+#   kernels/particle_kernels.cu
+# )
+## Automaticly add files, don't use for prod
+### Automatically find all source files
+file(GLOB_RECURSE CPP_SOURCES "${CMAKE_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/kernels/*.cu")
+
+### Print found files (optional, for debugging)
+message(STATUS "Found C++ files: ${CPP_SOURCES}")
+message(STATUS "Found CUDA files: ${CUDA_SOURCES}")
+
+### Add executable with automatically discovered files
+add_executable(cuda-particle-system
+  ${CPP_SOURCES}
+  ${CUDA_SOURCES}
 )
 
+
 # Set the CUDA architectures property for the target
-set_target_properties(particle_simulator PROPERTIES
+set_target_properties(cuda-particle-system PROPERTIES
   CUDA_ARCHITECTURES 86  # For RTX 4070 Ti
 )
 
 # Link libraries
-target_link_libraries(particle_simulator
+target_link_libraries(cuda-particle-system
   PRIVATE
   CUDA::cudart
   OpenGL::GL
