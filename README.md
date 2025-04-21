@@ -24,7 +24,7 @@ https://clangd.llvm.org/installation
 ### Arch linux
 Install cuda toolset.
 ``` bash
-`sudo pacman -S cuda cuda-gbd nvidia-utils opencl-nvidia``
+`sudo pacman -S cuda cuda-gbd nvidia-utils opencl-nvidia glfw-x11 glew glm``
 
 ## Verify Your Installation
 After installation, verify that CUDA is correctly set up:

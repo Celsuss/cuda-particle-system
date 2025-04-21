@@ -5,10 +5,12 @@
 
 class Simulator {
 public:
-  Simulator();
+  Simulator(int particles = 0);
   ~Simulator();
 
-  void update();
+  void run();
 private:
+  void update();
+
   std::vector<Particle*> m_particles;
 };

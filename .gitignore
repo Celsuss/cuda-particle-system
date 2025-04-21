@@ -7,7 +7,6 @@
 .aider*
 
 # CMake related
-CMakeLists.txt*
 CMakeCache.txt*
 .cmake
 CMakeFiles/*
